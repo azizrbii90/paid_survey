@@ -7,7 +7,12 @@ module.exports = {
 
     register: async (req, res) => {
         try {
-            const createUser = req.body;
+            const email = req.body.email
+            const exist = await userService.get({ email })
+            if(exist.data!==null)
+                throw new Error("Email already exist!")
+            if(exist.data===null) {
+                const createUser = req.body;
             createUser.password = await utils.AuthUtils.AuthUtils.argon2Hash(createUser.password)
             const newUser = await userService.create({
                 username: createUser.username,
@@ -28,10 +33,15 @@ module.exports = {
             }
            
             res.status(200);
-            res.json(newUser);
+            res.json({user: newUser, message: 'success'});
+            }
+            
         } catch (error) {
             res.status(500);
-            res.json(error.message);
+            if(error.message==="Email already exist!")
+                res.json({message:"Email already exist!"})
+            else 
+                res.json({message: "problem"})
         }
     },
 
@@ -60,7 +70,7 @@ module.exports = {
             });
             await utils.MailService.welcomeEmail({email:user.email});
             res.status(200);
-            res.redirect("URL_HOME_PAGE")
+            res.redirect("http://localhost:3000/login")
         } catch (error) {
             res.status(400);
             res.json({ updatedUser: null, message: error.message });
@@ -74,11 +84,11 @@ module.exports = {
             const token = await utils.AuthUtils.AuthUtils.generateToken({ id: user.data._id, email: user.data.email}, '1d');
             if(!compare) {
                 res.status(400);
-                res.json({user: null, token: null, message: 'wrong password'});
+                res.json({user: null, token: null, message: 'Wrong Password!'});
             }
             else if (!user.data.isVerified){
                 res.status(403);
-                res.json({ user: null, token: null, message: 'not verified'})
+                res.json({ user: null, token: null, message: 'Account Not Verified!'})
             }
             else {
                 res.status(200);
@@ -86,7 +96,7 @@ module.exports = {
             }
         } catch (error) {
             res.status(404);
-            res.json({error: error, token: null, message: 'user not found'})
+            res.json({error: error, token: null, message: 'User Not Found!'})
         }
     },
 
@@ -95,7 +105,10 @@ module.exports = {
         try {
             const email = req.params.email
             const user = await userService.get({ email })
-            const token = await utils.AuthUtils.AuthUtils.generateToken({ id: user.data._id, email: user.data.email}, '1d');
+            if(user.data===null)
+            throw new Error("Email Don't Exist!")
+            else {
+                const token = await utils.AuthUtils.AuthUtils.generateToken({ id: user.data._id, email: user.data.email}, '1d');
             try {
                 await utils.MailService.verificationEmail({
                     email: user.data.email,
@@ -105,14 +118,17 @@ module.exports = {
                 })
             } catch (e) {
                 res.status(500);
-                res.json({ newUser, message: 'error sending email' });
+                res.json({ newUser, message: 'Error Sending Email' });
             }
 
             res.status(200);
-            res.json("email sent")
+            res.json({ message:"Check your email to recover your password!" })
+            }
         } catch (error) {
-            res.status(500);
-            res.json(error)
+            if(error.message==="Email Don't Exist!")
+            res.json({message:"Email Don't Exist!"})
+            else 
+            res.json({message: "There is a Problem"})
         }
     },
 
@@ -132,8 +148,8 @@ module.exports = {
             }
 
             res.status(200);
-            res.cookie("email", user.data.email, { httpOnly: true });
-            res.send("<h1>You will be redirected you the recovery page</h1>" + '<script>         setTimeout(function () {  window.location = "URL_RECOVER_PASSWORD_PAGE"; }, 2000)</script>')
+            res.cookie("email", user.data.email, { httpOnly: false });
+            res.send("<h1>You will be redirected to the recovery page</h1>" + '<script>         setTimeout(function () {  window.location = "http://localhost:3000/recover-password"; }, 2000)</script>')
         } catch (error) {
             res.status(500);
             res.json(error);
@@ -143,9 +159,10 @@ module.exports = {
     recoverPassword: async (req, res) => {
 
         try {
-            const { email, password, confirmPassword } = req.body;
+
+            const { email, password, confirmPassword, cookie_email } = req.body;
             
-            if(req.cookies.email !== email) {
+            if(cookie_email !== email) {
                 utils.ErrorHandling.ErrorHandling.createValidationError({
                     type: 'ValidationError',
                     message: 'Cant change password!'
@@ -157,14 +174,14 @@ module.exports = {
                     })
             } else {
                 const user = await userService.get({ email })
-                var updatedUser = await userService.update(user._id, { password: await utils.AuthUtils.AuthUtils.argon2Hash(password)})
+                var updatedUser = await userService.update(user.data._id, { password: await utils.AuthUtils.AuthUtils.argon2Hash(password)})
                 res.status(200);
-                res.json(updatedUser);
+                res.json({ user: updatedUser, success: true });
             }
 
         } catch (error) {
             res.status(400);
-            res.json({ updatedUser: null, message: 'error updating password' });
+            res.json({ updatedUser: null, error: error });
         }
     }
 

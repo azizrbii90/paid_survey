@@ -16,8 +16,8 @@ const userSchema = new Schema({
     password : {
         type: String,
         required: true,
-        minLength: 8,
-        maxLength: 255
+        /*minLength: 8,
+        maxLength: 255*/
     },
     isVerified: {
         type: Boolean,
