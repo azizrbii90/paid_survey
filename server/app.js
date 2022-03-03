@@ -32,5 +32,6 @@ app.use('/api', require('./components/survey'));
 app.use('/api', require('./components/domain'));
 app.use('/api', require('./components/complaint'));
 app.use('/api', require('./components/gift'));
+app.use('/api', require('./components/order'));
 
 module.exports = app;

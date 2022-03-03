@@ -10,6 +10,10 @@ const giftSchema = new Schema({
     description : {
         type: String
     },
+    stock : {
+        type: Number,   
+        required: true
+    },
     photo :{
         name: String,
         mimetype: String,

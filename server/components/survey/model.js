@@ -58,7 +58,11 @@ const surveySchema = new Schema({
     price : {
         type: Number,   
         required: true
-    }
+    },
+    responsePrice  : {
+        type: Number,   
+        required: true
+    },
 
 
 }, { timestamps:true })
