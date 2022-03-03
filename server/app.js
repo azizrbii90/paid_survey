@@ -1,12 +1,17 @@
 const bodyParser = require('body-parser');
 const cookieParser = require ("cookie-parser");
+const fileUpload = require ("express-fileupload");
+
 const express = require('express');
 
 const app = express();
 
+app.use(fileUpload());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('uploads'));
+
 
 app.all('/*', function(req, res, next) {
     // CORS headers
@@ -25,5 +30,7 @@ app.all('/*', function(req, res, next) {
 app.use('/api', require('./components/user'));
 app.use('/api', require('./components/survey'));
 app.use('/api', require('./components/domain'));
+app.use('/api', require('./components/complaint'));
+app.use('/api', require('./components/gift'));
 
 module.exports = app;
