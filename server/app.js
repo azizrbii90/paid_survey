@@ -23,5 +23,7 @@ app.all('/*', function(req, res, next) {
 });
 
 app.use('/api', require('./components/user'));
+app.use('/api', require('./components/survey'));
+app.use('/api', require('./components/domain'));
 
 module.exports = app;

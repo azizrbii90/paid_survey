@@ -10,5 +10,7 @@ router
     .get('/users/recover-password-request/:email', userController.recoverPasswordRequest)
     .get('/users/recover-password', userController.verifyRecoverPasswordRequest)
     .put('/users/recover-password/:email', userController.recoverPassword)
+    .get('/users/get', userController.get)
+    .put('/users/update/:id', userController.updateUser)
 
 module.exports = router;

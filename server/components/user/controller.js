@@ -13,11 +13,13 @@ module.exports = {
                 throw new Error("Email already exist!")
             if(exist.data===null) {
                 const createUser = req.body;
-            createUser.password = await utils.AuthUtils.AuthUtils.argon2Hash(createUser.password)
-            const newUser = await userService.create({
+                createUser.password = await utils.AuthUtils.AuthUtils.argon2Hash(createUser.password)
+                const newUser = await userService.create({
                 username: createUser.username,
                 email: createUser.email,
-                password: createUser.password
+                password: createUser.password,
+                type: createUser.type,
+                isVerified: createUser.isVerified
             })
             const token = await utils.AuthUtils.AuthUtils.generateToken({ id: newUser._id, email: newUser.email}, '1d');
             try {
@@ -59,14 +61,14 @@ module.exports = {
 
             const user = (await userService.get({ email })).data;
             
-            if (user.isVerified) {
+            if (user.isActivated) {
                 utils.ErrorHandling.ErrorHandling.createValidationError({
                     type: 'ValidationError',
-                    message: 'Email Already Verified'
+                    message: 'Email Already Activated'
                 });
             }
             await userService.update(user._id, {
-                isVerified: true
+                isActivated: true
             });
             await utils.MailService.welcomeEmail({email:user.email});
             res.status(200);
@@ -86,9 +88,13 @@ module.exports = {
                 res.status(400);
                 res.json({user: null, token: null, message: 'Wrong Password!'});
             }
+            else if (!user.data.isActivated){
+                res.status(403);
+                res.json({ user: null, token: null, message: 'Account Not Activated, check your email!'})
+            }
             else if (!user.data.isVerified){
                 res.status(403);
-                res.json({ user: null, token: null, message: 'Account Not Verified!'})
+                res.json({ user: null, token: null, message: 'Account Not Verified, wait for Admin verification!'})
             }
             else {
                 res.status(200);
@@ -137,7 +143,6 @@ module.exports = {
         try {
             const email = req.query.email
             const token = req.query.token
-            console.log("test token ",token)
             const user = await userService.get({ email })
             const validity = await utils.AuthUtils.AuthUtils.verifyToken(token)
             if(!validity) {
@@ -183,7 +188,26 @@ module.exports = {
             res.status(400);
             res.json({ updatedUser: null, error: error });
         }
-    }
+    },
+
+    get: async (req, res) => {
+        const users = await userService.get(req.query);
+        res.status(200);
+        res.json(users);
+    },
+
+    updateUser: async (req, res) => {
+        try {
+            const newData = req.body;
+            const id = req.params.id;
+            const updatedUser = await userService.update(id, newData);
+            res.status(200);
+            res.json(updatedUser);
+        } catch (e) {
+            res.status(400);
+            res.json({ updatedUser: null, message: 'Updating is Fail' });
+        }
+    },
 
 
 
