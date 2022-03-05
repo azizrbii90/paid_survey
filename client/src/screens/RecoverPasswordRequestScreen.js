@@ -38,13 +38,13 @@ const RecoverPasswordRequestScreen = () => {
         {loading && <Loader />} 
         <form onSubmit={submitHandler}>
            <div className="form-group mt-4">
-             <label htmlFor="exampleInputEmail1">Email</label>
-             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={(e) => {
+             <label className="form-label" htmlFor="exampleInputEmail1">Email</label>
+             <input type="email" className="form-control-sm form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={(e) => {
              setEmail(e.target.value)
              setMessage('')}}/>
            </div>
         
-          <button type="submit" className="btn btn-secondary mt-4">Send</button>
+          <button type="submit" className="btn w-100 btn-sm  btn-secondary mt-4">Send</button>
             <div className="row mt-3">
               <div className="col-8 align-self-start">
                 <Link to="/login">

@@ -98,7 +98,7 @@ module.exports = {
             }
             else {
                 res.status(200);
-                res.json({user : user, token: token, message: 'success'})
+                res.json({user : user.data, token: token, message: 'success'})
             }
         } catch (error) {
             res.status(404);
@@ -208,6 +208,31 @@ module.exports = {
             res.json({ updatedUser: null, message: 'Updating is Fail' });
         }
     },
+
+    getInfoFromToken: async (req, res) => {
+
+        try {
+            let header = req.headers.authorization;
+            let arr = header.split(' ');
+            let token = arr[1].slice(1, -1);
+            const validity = await utils.AuthUtils.AuthUtils.verifyToken(token)
+            if(!validity) {
+                utils.ErrorHandling.ErrorHandling.createValidationError({
+                    type: 'ValidationError',
+                    message: 'Verification Link as expired'
+                });
+            }
+            const email = validity.email
+            const user = await userService.get({ email })
+            res.status(200);
+            res.json({user : user.data, token: token, message: 'success'})
+        
+        } catch(error) {
+            res.status(500);
+            res.json(error);
+        }
+
+    }
 
 
 

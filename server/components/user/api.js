@@ -12,5 +12,7 @@ router
     .put('/users/recover-password/:email', userController.recoverPassword)
     .get('/users/get', userController.get)
     .put('/users/update/:id', userController.updateUser)
+    .get('/users/getInfoFromToken', userController.getInfoFromToken)
+
 
 module.exports = router;

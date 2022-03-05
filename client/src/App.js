@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';  
-
+import { useDispatch } from 'react-redux';
 import './App.css'
 
 import Footer from './components/Footer.js';
@@ -12,11 +12,34 @@ import RegisterScreen from './screens/RegisterScreen';
 import RecoverPasswordRequestScreen from './screens/RecoverPasswordRequestScreen';
 import RecoverPasswordScreen from './screens/RecoverPasswordScreen';
 
+import ListSurveysScreen from './screens/ListSurveysScreen';
+
+import { getInfoFromToken } from './actions/userActions'
+import { listSurveys } from './actions/surveyActions'
+
+import { ReactNotifications } from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+
 const App = () => {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(listSurveys())
+    let token = localStorage.getItem('token')
+    if(token) 
+      dispatch(getInfoFromToken())
+  },[])
+
   return (
     <BrowserRouter>
+    <div style={{  position: 'absolute', top:0}} >
+    <ReactNotifications />
+     </div>
     <Header />
+    
       <main className="App">
+
         <Container>
           <Routes>
             <Route path="/" exact element={<HomeScreen />} />
@@ -24,6 +47,7 @@ const App = () => {
             <Route path="/register" element={<RegisterScreen />} />
             <Route path="/recover-password-request" element={<RecoverPasswordRequestScreen />} />
             <Route path="/recover-password" element={<RecoverPasswordScreen />} />
+            <Route path="/list-surveys" element={<ListSurveysScreen />} />
           </Routes>
         </Container>
       </main>

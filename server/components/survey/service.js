@@ -6,9 +6,8 @@ module.exports = {
   get: async () => {
     const dbQuery = Survey
       .find()
-    return {
-      data: await dbQuery.populate('user').populate('domains').populate('participants').populate('responses').exec()
-    };
+    
+    return await dbQuery.populate('user').populate('domains').populate('participants').populate('responses').exec();
   },
   getById: async (id) => {
     const dbQuery = Survey.findOne({

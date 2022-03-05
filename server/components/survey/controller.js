@@ -23,7 +23,7 @@ module.exports = {
     res.json(survey);
   },
   delete: async (req, res) => {
-    const deletedSurvey = await surveyService.delete(req.params.id, req.body);
+    const deletedSurvey = await surveyService.delete(req.params.id);
     res.status(200);
     res.json(deletedSurvey);
   }

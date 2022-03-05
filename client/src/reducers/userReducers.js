@@ -9,18 +9,18 @@ import {
 } from "../constants/userConstants"
 
 
-export const userLoginReducer = (state = {userInfo: null, error:""}, action) => {
+export const userLoginReducer = (state = {user: null, error:""}, action) => {
 
     switch (action.type) {
      
       case USER_LOGIN_REQUEST:
-        return { loading: true, error:"" };
+        return { loading: true, user: null, error:"" };
       case USER_LOGIN_SUCCESS:
-        return { loading: false, userInfo: action.payload, error:"" };
+        return { loading: false, user: action.payload, error:"" };
       case USER_LOGIN_FAIL:
         return { loading: false, error: action.payload };
       case USER_LOGOUT:
-        return {userInfo: null, error:""};
+        return {user: null, error:""};
       default:
         return state;
     }

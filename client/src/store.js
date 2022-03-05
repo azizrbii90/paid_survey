@@ -3,13 +3,22 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension'; 
 
 import {
+    //surveyListReducer,
+    //surveyDeleteReducer
+    surveyReducer
+    } from "./reducers/surveyReducers";
+
+import {
     userLoginReducer,
     userRegisterReducer
-  } from "./reducers/userReducers";
+    } from "./reducers/userReducers";
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
-    userRegister: userRegisterReducer
+    userRegister: userRegisterReducer,
+    surveyReducer
+    //surveyList: surveyListReducer,
+    //surveyDelete: surveyDeleteReducer
 }); 
 
 const initialState = {

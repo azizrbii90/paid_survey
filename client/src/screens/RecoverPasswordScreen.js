@@ -77,28 +77,28 @@ const RecoverPasswordScreen = () => {
         {loading && <Loader />} 
         <form onSubmit={submitHandler}>
           <div className="form-group mt-4">
-            <label htmlFor="exampleInputEmail1">Email</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" 
+            <label className="form-label" htmlFor="exampleInputEmail1">Email</label>
+            <input type="email" className="form-control-sm form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" 
             onChange={(e) => { 
             setMessage('') 
             setEmail(e.target.value)}}/>
           </div>
           <div className="form-group mt-3">
-            <label htmlFor="exampleInputPassword1">Password</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" 
+            <label className="form-label" htmlFor="exampleInputPassword1">Password</label>
+            <input type="password" className="form-control-sm form-control" id="exampleInputPassword1" placeholder="Password" 
             onChange={(e) => { 
             setMessage('') 
             setPassword(e.target.value)}}/>
           </div>
           <div className="form-group mt-3">
-            <label htmlFor="exampleInputPassword">Confirm Password</label>
-            <input type="password" className="form-control" id="exampleInputPassword" placeholder="Confirm Password" 
+            <label className="form-label" htmlFor="exampleInputPassword">Confirm Password</label>
+            <input type="password" className="form-control-sm form-control" id="exampleInputPassword" placeholder="Confirm Password" 
             onChange={(e) => { 
             setMessage('') 
             setConfirmPassword(e.target.value)}}/>
           </div>
        
-          <button type="submit" className="btn btn-secondary mt-4">Recover</button>
+          <button type="submit" className="btn w-100 btn-sm btn-secondary mt-4">Recover</button>
         </form>
       </div>
     </div>
