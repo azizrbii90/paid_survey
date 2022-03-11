@@ -13,8 +13,10 @@ module.exports = {
   },
   create: async (req, res) => {
     const createSurvey = req.body;
+    const savedSurvey = await surveyService.create(createSurvey)
+    const survey = await surveyService.getById(savedSurvey._id);
     res.status(200);
-    res.json({ data: await surveyService.create(createSurvey) });
+    res.json(survey);
   },
   update: async (req, res) => {
     const updateSurvey = req.body;

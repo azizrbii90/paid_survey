@@ -34,8 +34,12 @@ const Header = () => {
                      <a className="nav-link" href="#">About Us</a>
                    </li>
                    <li className="nav-item">
-                     <a className="nav-link" href="#">About Us</a>
-                   </li>
+                      <Link to="/list-surveys"  style={{textDecoration:"none"}} >
+                        <a className="nav-link stretched-link">
+                          Surveys
+                        </a>
+                      </Link>
+                    </li>
                    {user!==null ? (
                      <li className="nav-item dropdown">
                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,7 +54,7 @@ const Header = () => {
                        </div>
                      </li>
                    ) : (
-                     <Link to="/login">
+                     <Link to="/login"  style={{textDecoration:"none"}} >
                        <li className="nav-item">
                          <a className="nav-link">Sign In</a>
                        </li>

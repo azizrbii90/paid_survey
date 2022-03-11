@@ -13,9 +13,12 @@ import RecoverPasswordRequestScreen from './screens/RecoverPasswordRequestScreen
 import RecoverPasswordScreen from './screens/RecoverPasswordScreen';
 
 import ListSurveysScreen from './screens/ListSurveysScreen';
+import SurveyScreen from './screens/SurveyScreen';
 
 import { getInfoFromToken } from './actions/userActions'
 import { listSurveys } from './actions/surveyActions'
+import { listDomains } from './actions/domainActions'
+
 
 import { ReactNotifications } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
@@ -26,6 +29,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(listSurveys())
+    dispatch(listDomains())
     let token = localStorage.getItem('token')
     if(token) 
       dispatch(getInfoFromToken())
@@ -48,6 +52,7 @@ const App = () => {
             <Route path="/recover-password-request" element={<RecoverPasswordRequestScreen />} />
             <Route path="/recover-password" element={<RecoverPasswordScreen />} />
             <Route path="/list-surveys" element={<ListSurveysScreen />} />
+            <Route path="/surveys/:id" element={<SurveyScreen />} />
           </Routes>
         </Container>
       </main>

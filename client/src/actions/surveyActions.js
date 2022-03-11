@@ -5,19 +5,14 @@ import {
     END_LOADING,
     FETCH_ALL,
     DELETE,
-    SURVEY_LIST_SUCCESS,
-    SURVEY_LIST_REQUEST,
-    SURVEY_LIST_FAIL,
-    SURVEY_DELETE_REQUEST,
-    SURVEY_DELETE_SUCCESS,
-    SURVEY_DELETE_FAIL
+    CREATE, 
+    UPDATE
 } from "../constants/surveyConstants";
 
 export const listSurveys = () => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data }  = await api.listSurveys();
-    console.log("FETCH ALL : ", data)
     dispatch({ type: FETCH_ALL, payload: data});
     dispatch({ type: END_LOADING });
     return data
@@ -39,4 +34,26 @@ export const listSurveys = () => async (dispatch) => {
       console.log("error : ",error)
     }
   };
+
+  export const createSurvey = (survey) => async (dispatch) => {
+    try {
+        dispatch({ type: START_LOADING })
+        const { data } = await api.createSurvey(survey);
+        dispatch({ type: CREATE, payload: data.data})
+        return data.data
+    } catch (error) {
+        console.log(error)
+    }
+ }
+
+ export const updateSurvey = (survey) => async (dispatch) => {
+  try {
+      dispatch({ type: START_LOADING })
+      const { data } = await api.updateSurvey(survey);
+      dispatch({ type: UPDATE, payload: data})
+      return data
+  } catch (error) {
+      console.log(error)
+  }
+}
   

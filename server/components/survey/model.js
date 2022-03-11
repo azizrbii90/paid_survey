@@ -60,8 +60,9 @@ const surveySchema = new Schema({
         required: true
     },
     responsePrice  : {
-        type: Number,   
-        required: true
+        type: Number,
+        default: 1,
+        required: true  
     },
 
 

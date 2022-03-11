@@ -9,6 +9,10 @@ import {
     } from "./reducers/surveyReducers";
 
 import {
+    domainReducer
+    } from "./reducers/domainReducers";
+    
+import {
     userLoginReducer,
     userRegisterReducer
     } from "./reducers/userReducers";
@@ -16,7 +20,8 @@ import {
 const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
-    surveyReducer
+    surveyReducer: surveyReducer,
+    domainReducer: domainReducer
     //surveyList: surveyListReducer,
     //surveyDelete: surveyDeleteReducer
 }); 
