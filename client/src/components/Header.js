@@ -1,6 +1,6 @@
 import React from 'react';  
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { logout } from "../actions/userActions";
 
@@ -12,9 +12,10 @@ const Header = () => {
   const { user } = userLogin;
 
   const dispatch = useDispatch()
-  
+  const navigate = useNavigate()
+
   const logoutHandler = () => {
-    dispatch(logout());
+    dispatch(logout(navigate));
   };
 
   return (
@@ -31,15 +32,16 @@ const Header = () => {
                      <a className="nav-link" href="#">About Us</a>
                    </li>
                    <li className="nav-item">
-                     <a className="nav-link" href="#">About Us</a>
-                   </li>
-                   <li className="nav-item">
                       <Link to="/list-surveys"  style={{textDecoration:"none"}} >
-                        <a className="nav-link stretched-link">
+                        <a className="nav-link">
                           Surveys
                         </a>
                       </Link>
                     </li>
+                   <li className="nav-item">
+                     <a className="nav-link" href="#">About Us</a>
+                   </li>
+                  
                    {user!==null ? (
                      <li className="nav-item dropdown">
                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,11 +56,13 @@ const Header = () => {
                        </div>
                      </li>
                    ) : (
-                     <Link to="/login"  style={{textDecoration:"none"}} >
+                    
                        <li className="nav-item">
-                         <a className="nav-link">Sign In</a>
+                        <Link to="/login"  style={{textDecoration:"none"}} >
+                           <a className="nav-link">Sign In</a>
+                        </Link>
                        </li>
-                     </Link>
+                     
                    )}
                    {user!==null && user?.type==="admin" && (
                      <li className="nav-item dropdown">

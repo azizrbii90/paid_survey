@@ -50,8 +50,8 @@ export const listSurveys = () => async (dispatch) => {
   try {
       dispatch({ type: START_LOADING })
       const { data } = await api.updateSurvey(survey);
-      dispatch({ type: UPDATE, payload: data})
-      return data
+      dispatch({ type: UPDATE, payload: data.data})
+      return data.data
   } catch (error) {
       console.log(error)
   }

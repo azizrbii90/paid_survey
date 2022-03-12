@@ -34,7 +34,7 @@ const surveySchema = new Schema({
     },
     countries: [],
     questions: [questionSchema],
-    responses: [responseSchema],
+    responses: [{response : [responseSchema]}],
     participants: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: "User"

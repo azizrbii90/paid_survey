@@ -10,6 +10,8 @@ const StepTwo = ({ nextStep, prevStep,  handleFormData, handleFormTables, values
 
   const domainReducer = useSelector((state) => state.domainReducer);
   const { isLoading, domains } = domainReducer;
+  const userLogin = useSelector((state) => state.userLogin);
+  const { user } = userLogin;
  
   useEffect(() => {
     const domainTitles = domains.map(d => d.title)
@@ -54,6 +56,12 @@ const StepTwo = ({ nextStep, prevStep,  handleFormData, handleFormTables, values
           <input className="form-check-input" type="checkbox" checked={values.closed} onChange={handleFormData("closed")} />
           <label className="form-check-label">closed</label>
         </div>
+        { user?.type==="admin" && (
+        <div className="form-check form-switch mt-4">
+          <input className="form-check-input" type="checkbox" checked={values.isVerified} onChange={handleFormData("isVerified")} />
+          <label className="form-check-label">verified</label>
+        </div>
+        )}
       </div>
       <div className="col-4">
         <h4>&nbsp;</h4>

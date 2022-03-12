@@ -77,8 +77,9 @@ export const getInfoFromToken = () => async (dispatch) => {
     }
   };
 
-export const logout = () => (dispatch) => {
+export const logout = (navigate) => (dispatch) => {
     localStorage.removeItem("token");
+    navigate('/')
     dispatch({ type: USER_LOGOUT });
 };
 

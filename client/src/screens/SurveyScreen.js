@@ -7,7 +7,7 @@ import StepTwo from "./SurveyForm/StepTwo";
 import Final from "./SurveyForm/Final";
 
 
-const SurveyScreen = (s) => {
+const SurveyScreen = () => {
   const [step, setStep] = useState(1);
   const { id } = useParams();
   const domainReducer = useSelector((state) => state.domainReducer);
@@ -23,6 +23,7 @@ const SurveyScreen = (s) => {
     domains: [],
     questions: [],
     minResponses: 3,
+    responsePrice: 1,
     closed: false, 
     uploadedRequest: false, 
     isVerified: false,  
@@ -66,8 +67,7 @@ const SurveyScreen = (s) => {
   const handleInputData = input => e => {
     // input value from the form
     let value;
-    if([input][0]==='closed' || [input][0]==='uploadedRequest') {
-      console.log("here")
+    if([input][0]==='closed' || [input][0]==='uploadedRequest' || [input][0]==='isVerified') {
       value = e.target.checked
     } else {
       value = e.target.value
@@ -134,40 +134,6 @@ const SurveyScreen = (s) => {
       )
     }
   }
-  /*switch (step) {
-    // case 1 to show stepOne form and passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
-    case 1:
-      return (
-        <div>
-          
-                <StepOne nextStep={nextStep} />
-            
-        </div>
-      );
-
-      case 2:
-        return (
-          <div>
-           
-                  <StepTwo nextStep={nextStep} prevStep={prevStep}  />
-                
-          </div>
-        );
-
-        case 3:
-      return (
-        <div>
-          
-                <Final nextStep={nextStep} prevStep={prevStep}/>
-          
-        </div>
-      );
-    default:
-      return (
-        <div>
-        </div>
-      );
-  }*/
 }
 
 export default SurveyScreen

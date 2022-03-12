@@ -20,7 +20,8 @@ module.exports = {
   },
   update: async (req, res) => {
     const updateSurvey = req.body;
-    const survey = await surveyService.update(req.params.id, updateSurvey);
+    const updatedSurvey = await surveyService.update(req.params.id, updateSurvey);
+    const survey = await surveyService.getById(updatedSurvey._id);
     res.status(200);
     res.json(survey);
   },

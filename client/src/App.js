@@ -14,6 +14,7 @@ import RecoverPasswordScreen from './screens/RecoverPasswordScreen';
 
 import ListSurveysScreen from './screens/ListSurveysScreen';
 import SurveyScreen from './screens/SurveyScreen';
+import SurveyReplyScreen from './screens/SurveyReplyScreen';
 
 import { getInfoFromToken } from './actions/userActions'
 import { listSurveys } from './actions/surveyActions'
@@ -53,6 +54,7 @@ const App = () => {
             <Route path="/recover-password" element={<RecoverPasswordScreen />} />
             <Route path="/list-surveys" element={<ListSurveysScreen />} />
             <Route path="/surveys/:id" element={<SurveyScreen />} />
+            <Route path="/surveys/reply/:id" element={<SurveyReplyScreen />} />
           </Routes>
         </Container>
       </main>

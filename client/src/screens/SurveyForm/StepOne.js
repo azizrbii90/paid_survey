@@ -1,9 +1,13 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';  
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const StepOne = ({ nextStep, handleFormData, handleFormTables, values }) => {
   
   const navigate = useNavigate()
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { user } = userLogin;
   
   const nextHandler = () => {
       let valid = true;
@@ -22,8 +26,6 @@ const StepOne = ({ nextStep, handleFormData, handleFormTables, values }) => {
       if(valid)
         nextStep();
   };
-
-  
 
   return (
   <div>
@@ -49,6 +51,12 @@ const StepOne = ({ nextStep, handleFormData, handleFormTables, values }) => {
           <input id="minResponses" type="number" className="form-control-sm form-control" placeholder="Enter Number of participants expected" required value={values.minResponses} onChange={handleFormData("minResponses")} />
           <small id ="minResponsesMessage" style= {{display: 'none'}} className="form-text text-danger">Number of participants expected is required</small>
         </div>
+        { user?.type==="admin" && (
+          <div className="form-group mt-3">
+          <label className="form-label" >Price participation</label>
+          <input id="responsePrice" type="number" className="form-control-sm form-control" placeholder="Price participation" required value={values.responsePrice} onChange={handleFormData("responsePrice")} />
+        </div>
+        )}
         <button className="btn btn-primary btn-sm mt-5" style={{float: 'right', width:'80px'}} onClick={nextHandler} >next</button>
       </div>
     </div>
