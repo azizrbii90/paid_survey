@@ -70,8 +70,12 @@ const Header = () => {
                        Admin
                        </a>
                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                       <Link to="/list-users"  style={{textDecoration:"none"}} >
                          <a className="dropdown-item" href="#">Users</a>
+                        </Link>
+                        <Link to="/list-surveys"  style={{textDecoration:"none"}} >
                          <a className="dropdown-item" href="#">Surveys</a>
+                        </Link>
                          <a className="dropdown-item" href="#">complaints</a>
                          <div className="dropdown-divider"></div>
                          <a className="dropdown-item" href="#">Something else here</a>

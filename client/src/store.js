@@ -14,14 +14,16 @@ import {
     
 import {
     userLoginReducer,
-    userRegisterReducer
+    userRegisterReducer,
+    userReducer
     } from "./reducers/userReducers";
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     surveyReducer: surveyReducer,
-    domainReducer: domainReducer
+    domainReducer: domainReducer,
+    userReducer: userReducer
     //surveyList: surveyListReducer,
     //surveyDelete: surveyDeleteReducer
 }); 

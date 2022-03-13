@@ -17,3 +17,9 @@ export const recoverPasswordRequest = (email) => API.get(`/recover-password-requ
 export const recoverPassword = (email, password, confirmPassword, cookie_email) => API.put(`/recover-password/${email}`, {email, password, confirmPassword, cookie_email});
 export const getInfoFromToken = () => API.get(`/getInfoFromToken`);
 
+// specific for admin 
+
+export const listUsers = () => API.get(`/get`);
+export const updateUser = (user) => API.put(`/update/${user._id}`, user);
+
+

@@ -8,6 +8,10 @@ import {
     USER_REGISTER_REQUEST,
     USER_REGISTER_SUCCESS,
     USER_LOGOUT,
+    START_LOADING_USERS,
+    FETCH_ALL_USERS,
+    END_LOADING_USERS,
+    UPDATE_USERS,
     USER_DETAILS_RESET
 } from "../constants/userConstants"
 
@@ -83,6 +87,35 @@ export const logout = (navigate) => (dispatch) => {
     dispatch({ type: USER_LOGOUT });
 };
 
+// specific for admin 
+
+export const listUsers = () => async (dispatch) => {
+  try {
+    dispatch({ type: START_LOADING_USERS });
+    const { data }  = await api.listUsers();
+    dispatch({ type: FETCH_ALL_USERS, payload: data.data});
+    dispatch({ type: END_LOADING_USERS });
+    return data.data
+  } catch (error) {
+    console.log("error : ",error)
+  }
+}  
+
+export const updateUser = (user, type) => async (dispatch) => {
+  try {
+      if(type === 'isBlocked')
+        user.isBlocked = !user.isBlocked
+      if(type === 'isVerified') 
+        user.isVerified = ! user.isVerified
+        
+      dispatch({ type: START_LOADING_USERS })
+      const { data } = await api.updateUser(user);
+      dispatch({ type: UPDATE_USERS, payload: data})
+      return data.data
+  } catch (error) {
+      console.log(error)
+  }
+}
 
 
   

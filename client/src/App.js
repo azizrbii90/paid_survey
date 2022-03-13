@@ -16,9 +16,12 @@ import ListSurveysScreen from './screens/ListSurveysScreen';
 import SurveyScreen from './screens/SurveyScreen';
 import SurveyReplyScreen from './screens/SurveyReplyScreen';
 
+import ListUsersScreen from './screens/ListUsersScreen';
+
 import { getInfoFromToken } from './actions/userActions'
 import { listSurveys } from './actions/surveyActions'
 import { listDomains } from './actions/domainActions'
+import { listUsers } from './actions/userActions'
 
 
 import { ReactNotifications } from 'react-notifications-component'
@@ -31,6 +34,7 @@ const App = () => {
   useEffect(() => {
     dispatch(listSurveys())
     dispatch(listDomains())
+    dispatch(listUsers())
     let token = localStorage.getItem('token')
     if(token) 
       dispatch(getInfoFromToken())
@@ -55,6 +59,7 @@ const App = () => {
             <Route path="/list-surveys" element={<ListSurveysScreen />} />
             <Route path="/surveys/:id" element={<SurveyScreen />} />
             <Route path="/surveys/reply/:id" element={<SurveyReplyScreen />} />
+            <Route path="/list-users" element={<ListUsersScreen />} />
           </Routes>
         </Container>
       </main>

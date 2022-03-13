@@ -5,7 +5,11 @@ import {
     USER_REGISTER_FAIL,
     USER_REGISTER_REQUEST,
     USER_REGISTER_SUCCESS,
-    USER_LOGOUT
+    USER_LOGOUT,  
+    START_LOADING_USERS,
+    FETCH_ALL_USERS,
+    END_LOADING_USERS,
+    UPDATE_USERS
 } from "../constants/userConstants"
 
 
@@ -42,7 +46,33 @@ export const userRegisterReducer = (state = {userInfo: null, error: ""}, action)
     }
 }
 
+export const userReducer = (state = { isLoading: true, users: []  }, action) => {
 
+  switch (action.type) {
+
+    case START_LOADING_USERS: 
+      return { ...state, isLoading: true };
+    case END_LOADING_USERS: 
+      return { ...state, isLoading: false };
+    case FETCH_ALL_USERS:
+        return {
+            ...state, 
+            users: action.payload
+        };
+    case UPDATE_USERS:
+        return { ...state, users: state.users.map((user) => (user._id === action.payload._id ? action.payload : user)) };
+
+    /*case DELETE: 
+        return { ...state, surveys: state.surveys = state.surveys.filter((survey) => survey._id !== action.payload) }; 
+    case CREATE:
+        return  { ...state, surveys: [ ...state.surveys, action.payload ] };
+    case UPDATE:
+        return { ...state, surveys: state.surveys.map((survey) => (survey._id === action.payload._id ? action.payload : survey)) };
+    */
+    default: 
+        return state;
+  }
+}
 
 
   

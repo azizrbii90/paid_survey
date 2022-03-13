@@ -16,7 +16,7 @@ const ListSurveysScreen = () => {
   let { loading, surveys } = surveyReducer;
 
   useEffect(() => {
-    var newSurveys = []
+    var newSurveys =  surveys
     if(user?.type==="company") {
         newSurveys = surveys?.filter(function (el) {
          return el?.user?._id === user?._id
@@ -33,11 +33,11 @@ const ListSurveysScreen = () => {
   },[user,surveys])
 
   useEffect(() => {
+    var newSurveys = surveys
     if(user?.type==="company") {
-      var newSurveys = surveys?.filter(function (el) {
+      newSurveys = surveys?.filter(function (el) {
         return el?.user?._id === user?._id
       })
-      setSurveysUI(newSurveys);
     } else {
       console.log("participant || admin")
       if(user?.type==="participant") {
@@ -65,8 +65,9 @@ const ListSurveysScreen = () => {
   }
   return (
     <div>
-      <div className="mt-5 d-flex flex-row justify-content-between">
-        <h3>Surveys</h3>
+      <br></br>
+      <div className="d-flex flex-row justify-content-between">
+        <h3 className="mb-5">Surveys</h3>
         {user?.type === 'company' && (
           <button type="button" className="btn btn-sm btn-primary" onClick={NewHandler}>new</button>
         )}
