@@ -16,7 +16,8 @@ const userSchema = new Schema({
         unique: true
     },
     country : {
-        type: String
+        type: String,
+        default: ''
     }, 
     password : {
         type: String,
@@ -37,10 +38,12 @@ const userSchema = new Schema({
 
     // companies ***************/
     businessArea : {
-        type: String
+        type: String,
+        default: ''
     },
     nbrEmployees :  {
-        type : Number
+        type : Number,
+        default: 0
     },
     isVerified: {
         type: Boolean,
@@ -49,10 +52,12 @@ const userSchema = new Schema({
 
     // participant *******************/
     firstName : {
-        type: String
+        type: String,
+        default: ''
     },  
     lastName : {
-        type: String
+        type: String,
+        default: ''
     },
     wallet : {
         type: Number,   

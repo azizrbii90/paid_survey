@@ -12,6 +12,7 @@ import {
     FETCH_ALL_USERS,
     END_LOADING_USERS,
     UPDATE_USERS,
+    DELETE_USERS,
     USER_DETAILS_RESET
 } from "../constants/userConstants"
 
@@ -60,6 +61,28 @@ export const login = (email, password) => async (dispatch) => {
     }
 };
 
+export const modifyProfile = (user) => async (dispatch) => {
+  try {   
+      dispatch({ type: USER_LOGIN_REQUEST });
+      const { data } = await api.updateUser(user);
+      dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+      return data
+  } catch (error) {
+      console.log(error)
+  }
+}
+
+export const updatePassword = (id, currentPassword, newPassword) => async (dispatch) => {
+  try {   
+      //dispatch({ type: USER_LOGIN_REQUEST });
+      const { data } = await api.updatePassword(id, currentPassword, newPassword);
+      dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+      return data
+  } catch (error) {
+      console.log(error.response.data)
+      return error
+  }
+}
 
 export const getInfoFromToken = () => async (dispatch) => {
     try {
@@ -116,6 +139,18 @@ export const updateUser = (user, type) => async (dispatch) => {
       console.log(error)
   }
 }
+
+export const deleteUser = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.deleteUser(id);
+    if(data._id) {
+      dispatch({ type: DELETE_USERS, payload: data._id})
+    }
+    return data
+    } catch (error) {
+    console.log("error : ",error)
+  }
+};
 
 
   

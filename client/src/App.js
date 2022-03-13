@@ -18,6 +18,13 @@ import SurveyReplyScreen from './screens/SurveyReplyScreen';
 
 import ListUsersScreen from './screens/ListUsersScreen';
 
+import ListParticipantsScreen from './screens/ListParticipantsScreen';
+
+
+import ProfileScreen from './screens/ProfileScreen';
+import ChangePasswordScreen from './screens/ChangePasswordScreen';
+
+
 import { getInfoFromToken } from './actions/userActions'
 import { listSurveys } from './actions/surveyActions'
 import { listDomains } from './actions/domainActions'
@@ -60,6 +67,9 @@ const App = () => {
             <Route path="/surveys/:id" element={<SurveyScreen />} />
             <Route path="/surveys/reply/:id" element={<SurveyReplyScreen />} />
             <Route path="/list-users" element={<ListUsersScreen />} />
+            <Route path="/profile" element={<ProfileScreen />} />
+            <Route path="/settings-password" element={<ChangePasswordScreen />} />
+            <Route path="/list-participants/:id" element={<ListParticipantsScreen />} />
           </Routes>
         </Container>
       </main>

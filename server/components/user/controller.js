@@ -232,23 +232,47 @@ module.exports = {
             res.json(error);
         }
 
+    },
+
+    delete: async (req, res) => {
+        const deletedUser = await userService.delete(req.params.id);
+        res.status(200);
+        res.json(deletedUser);
+    },
+
+    changePassword: async (req, res) => {
+        try {
+            const id = req.params.id
+            const { currentPassword, newPassword } = req.body
+            var updatedUser = null
+            const user = await userService.get({ id })
+            const passwordVerification = await utils.AuthUtils.AuthUtils.comparePassword(user.data.password, currentPassword)
+            if (!passwordVerification) {
+                res.status(404)
+                utils.ErrorHandling.ErrorHandling.createValidationError({
+                    message: 'Wrong Current Password'
+                })
+            } else if (passwordVerification && currentPassword === newPassword) {
+                utils.ErrorHandling.ErrorHandling.createValidationError({
+                    message: 'Please enter a different password'
+                })
+            } else {
+                updatedUser = await userService.updatePassword(user.data._id, {
+                    password: await utils.AuthUtils.AuthUtils.argon2Hash(newPassword)
+                })
+            }
+            // todo - send mail to notify user that password has changed
+            //await utils.MailService.changePasswordEmail(user.data[0].email)
+            res.status(200);
+            res.json(updatedUser);
+        } catch (e) {
+            let message = ''
+            if(e.message!=='Wrong Current Password')
+                message = 'Error updating password'
+            else message = e.message
+            res.status(400);
+            res.json({ updatedUser: null, message: message });
+        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

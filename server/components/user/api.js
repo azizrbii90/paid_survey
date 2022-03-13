@@ -13,6 +13,9 @@ router
     .get('/users/get', userController.get)
     .put('/users/update/:id', userController.updateUser)
     .get('/users/getInfoFromToken', userController.getInfoFromToken)
+    .delete('/users/:id', userController.delete)
+    .put('/users/:id/new-password', userController.changePassword);
+
 
 
 module.exports = router;

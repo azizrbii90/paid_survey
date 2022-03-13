@@ -44,6 +44,21 @@ const Survey = ({survey}) => {
   const participateHandler = (id) => {
     navigate(`/surveys/reply/${id}`)
   }
+  const participantsHandler = (survey) => {
+    if(survey.participants.length === 0) {
+      Store.addNotification({
+        title: "No participants yet!",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        dismiss: {
+          duration: 2000,
+        }
+      });
+    } else {
+      navigate(`/list-participants/${survey._id}`)
+    }
+  }
   return (
     <div style={{cursor: 'pointer'}}>
       <div className="card mt-3">
@@ -101,7 +116,7 @@ const Survey = ({survey}) => {
             <button type="button" className="btn card-link" disabled>{survey.price}$</button>
             <button type="button" className="btn card-link" disabled>{survey.closed ? "Closed" : (!survey.uploadedRequest ? "In Progress" : (survey.isVerified ? "Verified" : "Waiting"))}</button>
             <button type="button" className="btn card-link" disabled>Min : {survey.minResponses}</button>
-            <button type="button" className="btn card-link" disabled>Participants : {survey.participants.length}</button>
+            <button type="button" className="btn card-link" style={{ color: '#ADD8E6' }} onClick={() => participantsHandler(survey) }><strong>Participants : {survey.participants.length}</strong></button>
           </span>
           )}
           {user?.type === 'admin' || user?.type === 'participant' && ( 

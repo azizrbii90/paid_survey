@@ -9,7 +9,8 @@ import {
     START_LOADING_USERS,
     FETCH_ALL_USERS,
     END_LOADING_USERS,
-    UPDATE_USERS
+    UPDATE_USERS,
+    DELETE_USERS
 } from "../constants/userConstants"
 
 
@@ -61,14 +62,8 @@ export const userReducer = (state = { isLoading: true, users: []  }, action) => 
         };
     case UPDATE_USERS:
         return { ...state, users: state.users.map((user) => (user._id === action.payload._id ? action.payload : user)) };
-
-    /*case DELETE: 
-        return { ...state, surveys: state.surveys = state.surveys.filter((survey) => survey._id !== action.payload) }; 
-    case CREATE:
-        return  { ...state, surveys: [ ...state.surveys, action.payload ] };
-    case UPDATE:
-        return { ...state, surveys: state.surveys.map((survey) => (survey._id === action.payload._id ? action.payload : survey)) };
-    */
+    case DELETE_USERS: 
+        return { ...state, users: state.users = state.users.filter((user) => user._id !== action.payload) }; 
     default: 
         return state;
   }

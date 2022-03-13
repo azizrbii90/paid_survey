@@ -49,8 +49,12 @@ const Header = () => {
                        </a>
                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                          <a className="dropdown-item" href="#">Complete Profile</a>
-                         <a className="dropdown-item" href="#">Update Profile</a>
-                         <a className="dropdown-item" href="#">Settings</a>
+                         <Link to="/profile"  style={{textDecoration:"none"}} >
+                          <a className="dropdown-item" href="#">Update Profile</a>
+                         </Link>
+                         <Link to="/settings-password"  style={{textDecoration:"none"}} >
+                          <a className="dropdown-item" href="#">Settings</a>
+                         </Link>
                          <div className="dropdown-divider"></div>
                          <a className="dropdown-item" onClick={logoutHandler}>Logout</a>
                        </div>

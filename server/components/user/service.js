@@ -57,5 +57,19 @@ module.exports = {
             console.log(error);
         }
     },
+
+    delete: async (id) => {
+        try {
+          const deletingUser = await User.findByIdAndDelete(id);
+          return deletingUser;
+        } catch (error) {
+          console.log(error);
+        }
+    },
+
+    updatePassword: async (id, data) => {
+        const updatedUser = await User.findByIdAndUpdate(id, data, { new: true });
+        return updatedUser;
+    },
     
 }
