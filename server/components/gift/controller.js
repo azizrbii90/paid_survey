@@ -40,8 +40,7 @@ module.exports = {
         size: file.size
         }
     }
-    
-    const gift = await giftService.update(req.params.id, updateGift);
+    const gift = await giftService.update(updateGift._id, updateGift);
 
     if(req.files) {
         let uploadPath = __dirname + '\\..\\..\\uploads\\' + file.name;

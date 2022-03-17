@@ -131,7 +131,8 @@ const Survey = ({survey}) => {
           </button>
         </div>
       <div>
-      {user?.type === 'admin' || user?.type === 'company' && (
+
+      {(user?.type === 'admin' || user?.type === 'company') && (
         <div>
         <button type="button" className="btn btn-sm btn-secondary card-link" onClick={() => updateHandler(survey._id)}>Update</button>
         <button type="button" className="btn btn-sm btn-primary card-link" data-toggle="modal" data-target={`#exampleModalCenter-${survey._id}`}>

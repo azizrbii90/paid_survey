@@ -38,6 +38,13 @@ const Header = () => {
                         </a>
                       </Link>
                     </li>
+                    <li className="nav-item">
+                      <Link to="/list-gifts"  style={{textDecoration:"none"}} >
+                        <a className="nav-link">
+                          Gifts
+                        </a>
+                      </Link>
+                    </li>
                    <li className="nav-item">
                      <a className="nav-link" href="#">About Us</a>
                    </li>
@@ -79,6 +86,9 @@ const Header = () => {
                         </Link>
                         <Link to="/list-surveys"  style={{textDecoration:"none"}} >
                          <a className="dropdown-item" href="#">Surveys</a>
+                        </Link>
+                        <Link to="/list-gifts"  style={{textDecoration:"none"}} >
+                         <a className="dropdown-item" href="#">Gifts</a>
                         </Link>
                          <a className="dropdown-item" href="#">complaints</a>
                          <div className="dropdown-divider"></div>

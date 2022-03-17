@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { updateSurvey } from '../actions/surveyActions';
 import { Store } from 'react-notifications-component';
 
+import { modifyProfile } from '../actions/userActions';
+
 const Response = ({step, nextStep, prevStep, handleFormData, values}) => {
   
   const [responses, setResponses] = useState([])
@@ -60,16 +62,22 @@ const Response = ({step, nextStep, prevStep, handleFormData, values}) => {
       values.participants.push(user._id)
       dispatch(updateSurvey(values)).then((data) => {
         if(data._id) {
-          Store.addNotification({
-            title: "Thank you!",
-            type: "success",
-            insert: "top",
-            container: "top-right",
-            dismiss: {
-              duration: 2000,
+          let newUser =  Object.assign({}, user)
+          newUser.wallet += data.responsePrice
+          dispatch(modifyProfile(newUser)).then((data) => {
+            if(data._id) {
+              Store.addNotification({
+                title: "Thank you check your wallet!",
+                type: "success",
+                insert: "top",
+                container: "top-right",
+                dismiss: {
+                  duration: 2000,
+                }
+              });
+              navigate('/list-surveys')
             }
-          });
-          navigate('/list-surveys')
+          })
         } else {
           Store.addNotification({
             title: "Oups there is problem!",

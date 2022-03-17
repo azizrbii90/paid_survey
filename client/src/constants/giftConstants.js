@@ -1,0 +1,6 @@
+export const START_LOADING_GIFT = 'START_LOADING_GIFT'
+export const END_LOADING_GIFT = 'END_LOADING_GIFT'
+export const FETCH_ALL_GIFT = 'FETCH_ALL_GIFT'
+export const DELETE_GIFT = 'DELETE_GIFT'
+export const CREATE_GIFT = 'CREATE_GIFT'
+export const UPDATE_GIFT = 'UPDATE_GIFT'
