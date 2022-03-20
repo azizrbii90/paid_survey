@@ -86,7 +86,7 @@ const Gift = ({gift}) => {
           <button className="btn" style={{marginRight : '40px'}} onClick={() => console.log("delete")}>
             <i className="fas fa-info" style={{color:'#0099ff'}}></i>
           </button>
-          <button className="btn" style={{marginLeft : '40px'}} onClick={() => console.log("delete")}>
+          <button className="btn" style={{marginLeft : '40px'}} onClick={() => navigate(`/order/${gift._id}`)}>
             <i className="fas fa-sync-alt" style={{color:'#ff1a1a'}}></i>
           </button>
           </div>

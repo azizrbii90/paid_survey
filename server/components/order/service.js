@@ -3,9 +3,9 @@ const Order = require('./model');
 module.exports = {
   get: async () => {
     const dbQuery = Order
-      .find()
+      .find().sort({ _id: -1 })
     return {
-      data: await dbQuery.exec()
+      data: await dbQuery.populate('user').populate('orderItems.gift').exec()
     };
   },
   getById: async (id) => {

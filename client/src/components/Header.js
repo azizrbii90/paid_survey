@@ -62,6 +62,15 @@ const Header = () => {
                          <Link to="/settings-password"  style={{textDecoration:"none"}} >
                           <a className="dropdown-item" href="#">Settings</a>
                          </Link>
+                         <Link to="/wallet"  style={{textDecoration:"none"}} >
+                          <a className="dropdown-item" href="#">Wallet</a>
+                         </Link>
+                         <Link to="/list-orders"  style={{textDecoration:"none"}} >
+                          <a className="dropdown-item" href="#">Orders</a>
+                         </Link>
+                         <Link to="/cart"  style={{textDecoration:"none"}} >
+                          <a className="dropdown-item" href="#">Cart</a>
+                         </Link>
                          <div className="dropdown-divider"></div>
                          <a className="dropdown-item" onClick={logoutHandler}>Logout</a>
                        </div>

@@ -13,6 +13,7 @@ module.exports = {
   },
   create: async (req, res) => {
     const createOrder = req.body;
+    console.log("gg" ,createOrder);
     res.status(200);
     res.json({ data: await orderService.create(createOrder) });
   },

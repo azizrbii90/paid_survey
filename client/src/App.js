@@ -26,12 +26,17 @@ import GiftScreen from './screens/GiftScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import ChangePasswordScreen from './screens/ChangePasswordScreen';
 
+import OrderScreen from './screens/OrderScreen';
+import ListOrdersScreen from './screens/ListOrdersScreen';
+
+import CartScreen from './screens/CartScreen';
 
 import { getInfoFromToken } from './actions/userActions'
 import { listSurveys } from './actions/surveyActions'
 import { listDomains } from './actions/domainActions'
 import { listUsers } from './actions/userActions'
 import { listGifts } from './actions/giftActions'
+import { listOrders } from './actions/orderActions'
 
 import { ReactNotifications } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
@@ -45,6 +50,7 @@ const App = () => {
     dispatch(listDomains())
     dispatch(listUsers())
     dispatch(listGifts())
+    dispatch(listOrders())
     let token = localStorage.getItem('token')
     if(token) 
       dispatch(getInfoFromToken())
@@ -75,6 +81,9 @@ const App = () => {
             <Route path="/list-participants/:id" element={<ListParticipantsScreen />} />
             <Route path="/list-gifts" element={<ListGiftsScreen />} />
             <Route path="/gifts/:id" element={<GiftScreen />} />
+            <Route path="/order/:id" element={<OrderScreen />} />
+            <Route path="/list-orders" element={<ListOrdersScreen />} />
+            <Route path="/cart" element={<CartScreen />} />
           </Routes>
         </Container>
       </main>

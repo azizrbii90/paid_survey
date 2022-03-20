@@ -47,7 +47,7 @@ export const login = (email, password) => async (dispatch) => {
       const { data } = await api.login({ email, password })
       dispatch({ type: USER_LOGIN_SUCCESS, payload: data.user });
       localStorage.setItem("token", JSON.stringify(data.token));
-
+      localStorage.setItem("wallet", JSON.stringify(data.user.wallet));
       return data
 
     } catch (error) {
@@ -91,6 +91,8 @@ export const getInfoFromToken = () => async (dispatch) => {
       
       const { data } = await api.getInfoFromToken()
       dispatch({ type: USER_LOGIN_SUCCESS, payload: data.user });
+      localStorage.setItem("wallet", JSON.stringify(data.user.wallet));
+
       return data
 
     } catch (error) {
@@ -106,6 +108,8 @@ export const getInfoFromToken = () => async (dispatch) => {
 
 export const logout = (navigate) => (dispatch) => {
     localStorage.removeItem("token");
+    localStorage.removeItem("wallet");
+    localStorage.removeItem("allOrders");
     navigate('/')
     dispatch({ type: USER_LOGOUT });
 };

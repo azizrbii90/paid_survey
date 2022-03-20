@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { Store } from 'react-notifications-component'
 
 import { modifyProfile } from '../actions/userActions'
@@ -14,6 +15,7 @@ const ProfileScreen = () => {
   const countries = ['Tunisia', 'Algeria', 'Egypte'];
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
     setFormData(user)
@@ -62,8 +64,25 @@ const ProfileScreen = () => {
   }
 
   return (
-    <div className="row">
+    <div>
             <h3 className="mb-5 mt-4">User Profile</h3>
+            {formData?.type === 'participant' && (
+            <div className="row mb-4">
+             <div className="col-5">
+              <div className="form-group mt-3">
+                <label className="form-label">Wallet</label>
+                <input type="text" className="form-control-sm form-control" value={`$${formData?.wallet}`} disabled/>
+              </div>
+             </div>
+             <div className="col-5">
+              <button className="btn btn-sm mt-5 btn-light w-100" onClick={() => navigate('/list-gifts')}>
+                <i className="fas fa-sync-alt" style={{color:'#ff1a1a'}}></i>
+              </button>
+            </div>
+            </div>
+            )}
+            
+            <div className="row">
             <form onSubmit={submitHandler}>
                 {formData?.type === 'admin' ? (
                     <div className="col-5">
@@ -137,6 +156,7 @@ const ProfileScreen = () => {
                 )}
                 <button type="submit" className="btn btn-sm btn-primary mt-5">update</button>
             </form>
+            </div>
     </div>
   )
 }

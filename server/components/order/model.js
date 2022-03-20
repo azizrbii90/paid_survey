@@ -21,7 +21,6 @@ const orderSchema = new Schema({
             },
         },
       ],
-    shippingAddress: {
         address: {
           type: String,
           required: true,
@@ -38,7 +37,7 @@ const orderSchema = new Schema({
           type: String,
           required: true,
         },
-      },
+      
 
       isDelivered: {
         type: Boolean,
