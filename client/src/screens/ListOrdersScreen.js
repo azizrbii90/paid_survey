@@ -84,7 +84,7 @@ const ListOrdersScreen = () => {
   return (
     <div>
       <br></br>
-      <h3 className="mb-5">Users</h3>
+      <h1 className="mb-5">Orders</h1>
       <DataTable
             pagination
             columns={columns}

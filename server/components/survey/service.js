@@ -5,7 +5,7 @@ const Survey = require('./model');
 module.exports = {
   get: async () => {
     const dbQuery = Survey
-      .find()
+      .find().sort({ _id: -1 })
     
     return await dbQuery.populate('user').populate('domains').populate('participants').populate('responses').exec();
   },

@@ -23,7 +23,8 @@ const GiftScreen = () => {
   })
   const giftReducer = useSelector((state) => state.giftReducer);
   let { loading, gifts } = giftReducer;
-  console.log("gifts ",gifts)
+
+  const token = localStorage.getItem('token')
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -153,30 +154,30 @@ const GiftScreen = () => {
       <form onSubmit={submitHandler}>
         <div className="form-group mt-3">
             <label className="form-label" htmlFor="title">Title</label>
-            <input type="text" className="form-control-sm form-control" id="title" value={formData.name} aria-describedby="titleHelp" placeholder="Enter title" onChange={handleFormData("name")}/>
+            <input type="text" className="form-control-sm form-control" id="title" value={formData.name} aria-describedby="titleHelp" placeholder="Enter title" onChange={handleFormData("name")} disabled={token!==undefined}/>
             <small id ="titleMessage" style= {{display: 'none'}} className="form-text text-danger">Title is required</small>
         </div>
         <div className="form-group mt-3">
             <label className="form-label" htmlFor="description">Description</label>
-            <textarea className="form-control form-control-sm" id="description" value={formData.description} rows="3" placeholder="Enter description" onChange={handleFormData("description")}></textarea>
+            <textarea className="form-control form-control-sm" id="description" value={formData.description} rows="3" placeholder="Enter description" onChange={handleFormData("description")} disabled={token!==undefined}></textarea>
         </div>
         <div className="form-group mt-3">
             <label className="form-label" htmlFor="price">Price</label>
-            <input type="number" className="form-control-sm form-control" id="price" value={formData.price} aria-describedby="priceHelp" placeholder="Enter price" onChange={handleFormData("price")}/>
+            <input type="number" className="form-control-sm form-control" id="price" value={formData.price} aria-describedby="priceHelp" placeholder="Enter price" onChange={handleFormData("price")} disabled={token!==undefined}/>
             <small id ="priceMessage" style= {{display: 'none'}} className="form-text text-danger">Price is required</small>
         </div>
         <div className="form-group mt-3">
             <label className="form-label" htmlFor="stock">Stock</label>
-            <input type="number" className="form-control-sm form-control" id="stock" value={formData.stock} aria-describedby="stockHelp" placeholder="Enter stock" onChange={handleFormData("stock")}/>
+            <input type="number" className="form-control-sm form-control" id="stock" value={formData.stock} aria-describedby="stockHelp" placeholder="Enter stock" onChange={handleFormData("stock")} disabled={token!==undefined}/>
             <small id ="stockMessage" style= {{display: 'none'}} className="form-text text-danger">Stock is required</small>
         </div>
         <div className="form-group mt-3">
             <label htmlFor="photo" className="form-label" >Photo</label>
-            <input className="form-control" type="file" id="photo" required={id==='-1' ? true : false} accept="image/*" onChange={onChange}/>
+            <input className="form-control" type="file" id="photo" required={id==='-1' ? true : false} accept="image/*" onChange={onChange} disabled={token!==undefined}/>
             <small id ="photoMessage" style= {{display: 'none'}} className="form-text text-danger">Photo is required</small>
         </div>
         <div className="d-flex flex-row justify-content-between mb-3">
-          <button type="submit" className="btn btn-sm btn-primary mt-4">submit</button>
+          <button type="submit" className="btn btn-sm btn-primary mt-4" disabled={token!==undefined}>submit</button>
           <button className="btn btn-sm btn-primary mt-4" onClick={() => navigate(`/list-gifts`)}>back</button>
         </div>
       </form>

@@ -195,9 +195,9 @@ const CartScreen = () => {
     <div>
       <br></br>
       <div className="d-flex flex-row justify-content-between mb-5">
-      <h3>Cart</h3>
-      <Button variant="primary sm" onClick={handleShow}>
-        confirm
+      <h1>Cart</h1>
+      <Button variant="primary" size="sm" disabled={allOrders.length===0} onClick={handleShow}>
+        confirm all orders
       </Button>
 
       <Modal show={show} onHide={handleClose}>

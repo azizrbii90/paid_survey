@@ -40,7 +40,7 @@ const ListParticipantsScreen = () => {
     <div>
       <br></br>
       <div className="d-flex flex-row justify-content-between mb-5">
-        <h3>List Participants</h3>
+        <h1>List participants</h1>
         <button type="button" className="btn btn-sm btn-primary" onClick={() => navigate(`/list-surveys`)}>back</button>
       </div>
       {survey!==null && (

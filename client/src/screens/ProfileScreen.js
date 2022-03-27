@@ -65,7 +65,8 @@ const ProfileScreen = () => {
 
   return (
     <div>
-            <h3 className="mb-5 mt-4">User Profile</h3>
+      <br/>
+            <h1 className="mb-4">User Profile</h1>
             {formData?.type === 'participant' && (
             <div className="row mb-4">
              <div className="col-5">

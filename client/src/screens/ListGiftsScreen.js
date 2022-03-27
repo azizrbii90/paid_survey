@@ -27,8 +27,8 @@ const ListGiftsScreen = () => {
         )}
       </div>
       <div className="row">
-        {gifts && (gifts.map((gift) => (
-                <Gift gift={gift} />
+        {gifts && (gifts.map((gift, i) => (
+                <Gift key={i} gift={gift} />
         )))}
       </div>
     </div>

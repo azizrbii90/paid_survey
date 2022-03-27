@@ -3,9 +3,9 @@ const Complain = require('./model');
 module.exports = {
   get: async () => {
     const dbQuery = Complain
-      .find()
+      .find().sort({ _id: -1 })
     return {
-      data: await dbQuery.exec()
+      data: await dbQuery.populate('sender').exec()
     };
   },
   getById: async (id) => {

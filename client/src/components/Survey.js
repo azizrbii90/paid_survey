@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { createSearchParams, useNavigate } from 'react-router-dom'
 
 import { Store } from 'react-notifications-component';
 
@@ -42,8 +42,18 @@ const Survey = ({survey}) => {
     navigate(`/surveys/${id}`)
   }
   const participateHandler = (id) => {
-    navigate(`/surveys/reply/${id}`)
+    if(user!==null) {
+      navigate(`/surveys/reply/${id}`)
+    } else {
+      navigate({
+        pathname: "/login",
+        search: `?${createSearchParams({
+          next: '-surveys-reply-'+id
+      })}`
+    });
+    }
   }
+
   const participantsHandler = (survey) => {
     if(survey.participants.length === 0) {
       Store.addNotification({
@@ -159,7 +169,7 @@ const Survey = ({survey}) => {
         </div>
         </div>
       )}
-      {user?.type === 'participant' && (
+      {(user?.type === 'participant' || user===null) && (
         <button type="button" className="btn btn-sm btn-primary card-link" onClick={() => participateHandler(survey._id)}>Reply</button>
       )}
     </div>

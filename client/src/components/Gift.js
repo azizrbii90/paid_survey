@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { createSearchParams, useNavigate } from 'react-router-dom'
 
 import { Store } from 'react-notifications-component';
 
@@ -14,6 +14,7 @@ const Gift = ({gift}) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { user } = userLogin;
+
 
   const DeleteHandler = (id) => {
     dispatch(deleteGift(id)).then((data) => {
@@ -40,6 +41,20 @@ const Gift = ({gift}) => {
       }
     })
   };
+
+  const GoGiftHandler = () => {
+    const token = localStorage.getItem('token') 
+    if(token) {
+      navigate(`/order/${gift._id}`)
+    } else {
+      navigate({
+        pathname: "/login",
+        search: `?${createSearchParams({
+          next: '-order-'+gift._id
+      })}`
+    });
+    }
+  }
 
   return (
     <div className="col-3">
@@ -83,10 +98,10 @@ const Gift = ({gift}) => {
           </div>
           ) : (
           <div>
-          <button className="btn" style={{marginRight : '40px'}} onClick={() => console.log("delete")}>
+          <button className="btn" style={{marginRight : '40px'}} onClick={() => navigate(`/gifts/${gift._id}`)}>
             <i className="fas fa-info" style={{color:'#0099ff'}}></i>
           </button>
-          <button className="btn" style={{marginLeft : '40px'}} onClick={() => navigate(`/order/${gift._id}`)}>
+          <button className="btn" style={{marginLeft : '40px'}} onClick={GoGiftHandler}>
             <i className="fas fa-sync-alt" style={{color:'#ff1a1a'}}></i>
           </button>
           </div>

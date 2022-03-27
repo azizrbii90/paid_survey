@@ -17,6 +17,10 @@ import {
 } from "./reducers/giftReducers";
 
 import {
+    complaintReducer
+} from "./reducers/complaintReducers";
+
+import {
     orderReducer
 } from "./reducers/orderReducers";
     
@@ -33,7 +37,8 @@ const reducer = combineReducers({
     domainReducer: domainReducer,
     userReducer: userReducer,
     giftReducer: giftReducer,
-    orderReducer: orderReducer
+    orderReducer: orderReducer,
+    complaintReducer: complaintReducer
     //surveyList: surveyListReducer,
     //surveyDelete: surveyDeleteReducer
 }); 

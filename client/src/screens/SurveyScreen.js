@@ -110,7 +110,7 @@ const SurveyScreen = () => {
     if(i === 1 && step ===1) {
       return (
         <div>
-          
+                <br/>
                 <StepOne nextStep={nextStep} handleFormData={handleInputData} handleFormTables={handleInputTables} values={formData} />
             
         </div>
@@ -119,7 +119,7 @@ const SurveyScreen = () => {
     } if ( i === 2 && step ===2 ) {
       return (
         <div>
-         
+         <br/>
                 <StepTwo nextStep={nextStep} prevStep={prevStep} handleFormData={handleInputData} handleFormTables={handleInputTables} values={formData}  />
               
         </div>
@@ -127,7 +127,7 @@ const SurveyScreen = () => {
     } else if(i===step){
       return (
       <div key={step}>
-          
+          <br/>
       <Final step={step} nextStep={nextStep} prevStep={prevStep} handleFormData={handleInputData} handleFormTables={handleInputTables} values={formData}/>
 
         </div>

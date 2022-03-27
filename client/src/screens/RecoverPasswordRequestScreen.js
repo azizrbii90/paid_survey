@@ -29,13 +29,14 @@ const RecoverPasswordRequestScreen = () => {
     }
 
   return (
-    <div className="row">
+    <div className="row justify-content-center">
       <div className="col-6">
         <h1 className="mt-4">Forgot Password</h1>
         {message && <div className={`alert mt-4 ${color}`} role="alert">
           {message}
         </div>}
         {loading && <Loader />} 
+        <hr/>
         <form onSubmit={submitHandler}>
            <div className="form-group mt-4">
              <label className="form-label" htmlFor="exampleInputEmail1">Email</label>

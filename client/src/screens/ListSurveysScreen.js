@@ -67,7 +67,7 @@ const ListSurveysScreen = () => {
     <div>
       <br></br>
       <div className="d-flex flex-row justify-content-between mb-5">
-        <h3>Surveys</h3>
+        <h1>Surveys</h1>
         {user?.type === 'company' && (
           <button type="button" className="btn btn-sm btn-primary" onClick={NewHandler}>new</button>
         )}

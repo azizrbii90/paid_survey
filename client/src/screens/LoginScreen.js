@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../actions/userActions'
 import Loader from '../components/Loader'
@@ -9,9 +9,15 @@ const LoginScreen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [message, setMessage] = useState('')
+
+    const location = useLocation()
+
+    let redirect = location.search ? location.search.split('=')[1] : '/'
+    redirect = redirect.replaceAll('-','/')
+    const redirectT = redirect.split('/');
     
     const userLogin = useSelector((state) => state.userLogin)
-    const { loading, error, userInfo } = userLogin
+    const { loading, error, user } = userLogin
 
     const dispatch = useDispatch()  
     const navigate = useNavigate()
@@ -20,24 +26,30 @@ const LoginScreen = () => {
       setMessage(error)
     }, [error])
 
+    useEffect(() => {
+      if (user!==null) {
+        if(redirectT[2]==="reply" && user?.type!=="participant") {
+          navigate('/list-surveys')
+        } else {
+          navigate(redirect)
+        }
+      }
+    }, [location, user, redirect])
+
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(login(email, password)).then((data) => {
-          if(data.message==="success") {
-              navigate('/list-surveys')
-          } 
-        })
+        dispatch(login(email, password))
     }
   
   return (
-    <div className="row">
+    <div className="row justify-content-center">
       <div className="col-6">
       <h1 className="mt-4">Sign IN</h1>
       {(message!=="") ? <div className="alert alert-danger mt-4" role="alert">
         {message}
       </div> : null}
       {loading && <Loader />} 
-
+      <hr/>
       <form onSubmit={submitHandler}>
         <div className="form-group mt-3">
          <label className="form-label" htmlFor="exampleInputEmail1">Email</label>

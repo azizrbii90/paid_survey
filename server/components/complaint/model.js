@@ -8,10 +8,14 @@ const complainSchema = new Schema({
     },
     sender: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        required: false,
         ref: "User",
     },
-
+    receiver: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+        ref: "User",
+    }
 }, { timestamps:true })
 
 

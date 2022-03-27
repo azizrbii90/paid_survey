@@ -4,15 +4,10 @@ import { listSurveys } from "../actions/surveyActions";
 
 
 const HomeScreen = () => {
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-      dispatch(listSurveys())
-   }, []);
-
+  
   return (
     <div>
+      <br></br>
         <h1 className="mt-4"> THIS HOME SCREEN </h1>
     </div>
   )

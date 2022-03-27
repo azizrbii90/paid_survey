@@ -64,7 +64,7 @@ const ChangePasswordScreen = () => {
 
   return (
     <div className="row">
-            <h3 className="mb-5 mt-4">Update Password</h3>
+            <h1 className="mb-4 mt-4">Update Password</h1>
             {(message!=="") ? 
             <div className="alert alert-danger mt-4" role="alert">
                 {message}
