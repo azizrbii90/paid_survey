@@ -23,7 +23,7 @@ const Header = () => {
        <header>
               
               <nav className="navbar navbar-expand-lg navbar-light bg-light p-3 fixed-top">
-               <div className="navbar-brand">Paid Survey</div>
+               <div className="navbar-brand">Easy Win</div>
                <div className="collapse navbar-collapse">
                </div>
                <div>

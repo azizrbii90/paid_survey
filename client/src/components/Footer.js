@@ -38,11 +38,10 @@ const Footer = () => {
       <div className="row mt-3">
         <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <h6 className="text-uppercase fw-bold mb-4">
-            <i className="fas fa-gem me-3"></i>Company name
+            <i className="fas fa-gem me-3"></i>Easy Win
           </h6>
           <p>
-            Here you can use rows and columns to organize your footer content. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit.
+          Make your voice heard and influence the decisions that affect your daily life by participating in our online surveys
           </p>
         </div>
       
@@ -51,16 +50,13 @@ const Footer = () => {
             Products
           </h6>
           <p>
-            <a href="#!" className="text-reset">Angular</a>
+            <a>Surveys</a>
           </p>
           <p>
-            <a href="#!" className="text-reset">React</a>
+            <a>Investigations</a>
           </p>
           <p>
-            <a href="#!" className="text-reset">Vue</a>
-          </p>
-          <p>
-            <a href="#!" className="text-reset">Laravel</a>
+            <a>Market Research</a>
           </p>
         </div>
        
@@ -69,16 +65,13 @@ const Footer = () => {
             Useful links
           </h6>
           <p>
-            <a href="#!" className="text-reset">Pricing</a>
+            <a>About Us</a>
           </p>
           <p>
-            <a href="#!" className="text-reset">Settings</a>
+            <a>Contact Us</a>
           </p>
           <p>
-            <a href="#!" className="text-reset">Orders</a>
-          </p>
-          <p>
-            <a href="#!" className="text-reset">Help</a>
+            <a>Gifts</a>
           </p>
         </div>
        
@@ -86,21 +79,20 @@ const Footer = () => {
           <h6 className="text-uppercase fw-bold mb-4">
             Contact
           </h6>
-          <p><i className="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <p><i className="fas fa-home me-3"></i> Bardo, 2000, TN</p>
           <p>
             <i className="fas fa-envelope me-3"></i>
             info@example.com
           </p>
-          <p><i className="fas fa-phone me-3"></i> + 01 234 567 88</p>
-          <p><i className="fas fa-print me-3"></i> + 01 234 567 89</p>
+          <p><i className="fas fa-phone me-3"></i> + 216 267 533 81</p>
         </div>
       </div>
     </div>
   </section>
  
   <div className="text-center p-4" >
-    © 2021 Copyright:
-    <a className="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    © 2022 Copyright:
+    <a className="text-reset fw-bold" href="https://easywin.com/">easywin.com</a>
   </div>
 </footer>
   )
