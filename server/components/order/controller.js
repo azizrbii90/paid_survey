@@ -13,13 +13,15 @@ module.exports = {
   },
   create: async (req, res) => {
     const createOrder = req.body;
-    console.log("gg" ,createOrder);
+    const savedOrder = await orderService.create(createOrder);
+    const order = await orderService.getById(savedOrder._id);
     res.status(200);
-    res.json({ data: await orderService.create(createOrder) });
+    res.json( order );
   },
   update: async (req, res) => {
     const updateOrder = req.body;
-    const order = await orderService.update(req.params.id, updateOrder);
+    const updatedOrder = await orderService.update(req.params.id, updateOrder);
+    const order = await orderService.getById(updatedOrder._id);
     res.status(200);
     res.json(order);
   },

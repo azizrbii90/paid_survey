@@ -63,6 +63,7 @@ const ListOrdersScreen = () => {
 
   useEffect(() => {
     var newOrders =  orders
+    console.log("jj ",newOrders)
     if(user?.type==="participant") {
         newOrders = orders?.filter(function (el) {
          return el?.user?._id === user?._id
@@ -73,6 +74,7 @@ const ListOrdersScreen = () => {
 
   useEffect(() => {
     var newOrders =  orders
+    console.log("jj ",newOrders)
     if(user?.type==="participant") {
         newOrders = orders?.filter(function (el) {
          return el?.user?._id === user?._id

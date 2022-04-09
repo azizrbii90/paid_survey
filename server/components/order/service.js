@@ -13,7 +13,7 @@ module.exports = {
       _id: id
     });
     return {
-      data: await dbQuery.exec()
+      data: await dbQuery.populate('user').populate('orderItems.gift').exec()
     };
   },
   create: async (createOrder) => {

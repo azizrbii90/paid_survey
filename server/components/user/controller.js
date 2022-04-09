@@ -84,6 +84,7 @@ module.exports = {
             const user = await userService.get(req.body);
             const compare = await utils.AuthUtils.AuthUtils.comparePassword(user.data.password,req.body.password);
             const token = await utils.AuthUtils.AuthUtils.generateToken({ id: user.data._id, email: user.data.email}, '1d');
+            console.log("useer", user)
             if(!compare) {
                 res.status(400);
                 res.json({user: null, token: null, message: 'Wrong Password!'});

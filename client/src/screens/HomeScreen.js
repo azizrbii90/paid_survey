@@ -5,6 +5,8 @@ import { listSurveys } from "../actions/surveyActions";
 import slide4 from '../images/slide4.jfif';
 import slide2 from '../images/slide2.png';
 import slide3 from '../images/slide3.png';
+import slide5 from '../images/slide5.jpg';
+
 
 import ListSurveysScreen from './ListSurveysScreen';
 
@@ -15,8 +17,12 @@ const HomeScreen = () => {
   
   return (
     <div>
-      <br></br>
-  <div className="row text-center" >
+      
+   <div className="row">
+    <img src={slide5} style={{height: '260px'}} />
+   </div>
+   <br></br>
+  <div className="row text-center bg-light p-2">
   <h2>Get started in three easy steps</h2>
     <div className="col-4"> 
     <br/><br/>
@@ -33,11 +39,10 @@ const HomeScreen = () => {
     <h4>Earn rewards and get paid</h4>
     <p>When you complete a survey you earn points which can be redeemed for cash, data, broadcast time or vouchers</p>
     </div>
-    <br/>
+    
    </div>
-
-   <div>
-     <br/><hr/><br/>
+   <br/><hr/><br/>
+   <div className="row bg-light p-2">
      <h2>Helping governments, brands and NGOs make informed decisions in Africa.</h2><br/><br/>
      <p>
      When you join AfriSight, you will be asked for your opinion and perspective on:<br></br><br/>
@@ -51,10 +56,10 @@ const HomeScreen = () => {
      </ul>
      Your opinion is appreciated and it helps companies to better understand their customers, to develop new products and services.
      </p>
-     <br/><hr/><br/>
    </div>
+   <br/><hr/><br/>
 
-   <div className="row">
+   <div className="row bg-light p-2">
      <h3>Testimonials</h3>
      <div className="col-6">
       <p>

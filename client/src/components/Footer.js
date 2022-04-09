@@ -91,7 +91,7 @@ const Footer = () => {
   </section>
  
   <div className="text-center p-4" >
-    © 2022 Copyright:
+    © 2022 copyright:
     <a className="text-reset fw-bold" href="https://easywin.com/">easywin.com</a>
   </div>
 </footer>

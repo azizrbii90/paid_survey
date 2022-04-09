@@ -72,7 +72,9 @@ const ListSurveysScreen = () => {
           <button type="button" className="btn btn-sm btn-primary" onClick={NewHandler}>new</button>
         )}
       </div>
-
+      {surveysUI.length === 0 && (
+        <h5 className="mt-5">No surveys yet.</h5>
+      )}
       {surveysUI && (surveysUI.map((survey) => (
              <div key={survey._id} >
                 <Survey survey={survey} />

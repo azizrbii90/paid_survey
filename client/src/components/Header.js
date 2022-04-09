@@ -60,13 +60,13 @@ const Header = () => {
                           Contact Us
                         </a>
                       </Link>
-                    </li>  
+                    </li> 
                    {user!==null ? (
                      <li className="nav-item dropdown">
                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                        {user?.username}
                        </a>
-                       <div className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                       <div style={{transform: 'translateX(-100px)'}} className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                          <Link to="/profile"  style={{textDecoration:"none"}} >
                           <a className="dropdown-item" href="#">Update Profile</a>
                          </Link>
