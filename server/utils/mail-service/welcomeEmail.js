@@ -8,8 +8,8 @@ module.exports = ({ email }) => {
             port: 465,
             secure: true,
             auth: {
-                user: "rbiiaziz900@gmail.com",
-                pass: "vakiqzlkgnqgirsx"
+                user: "email",
+                pass: "mot de passe"
             }
         })
         const mailOptions = {
